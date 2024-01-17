@@ -3,7 +3,7 @@ import apiPlanets from '../../api';
 import themeContext from '../../theme/themeContext';
 import ResultApi from '../../api/typeApi';
 import { comparasionMath, columnFilter,
-  initialFilter, Filter } from './comparasionFun';
+  initialFilter, Filter, initialNumerics } from './comparasionFun';
 import { useFilters } from '../../hooks/useFilter';
 import FilterPlanets from '../filterPlanets';
 
@@ -11,23 +11,14 @@ function Table() {
   const [columnFilterState, setColumnFilterState] = useState<string[]>(columnFilter);
   const [infoPlanets, setInfoPlanets] = useState<ResultApi[]>([]);
   const [filters, setFilter] = useState(initialFilter);
-  const {
-    textPlanet,
-    selectColumn,
-    selectComparasion,
-    inputNumber,
-    handleChange,
-    handleColumn,
-    handleComparasion,
-    handleValue,
-    handleColumnSortName,
-    handleSort,
-  } = useFilters();
-
+  const [originalData, setOriginalData] = useState([]);
+  const [lastFilter, setLastFilter] = useState<ResultApi[]>([]);
+  const filHook = useFilters();
   const fetch = async () => {
     try {
       const planets = await apiPlanets();
       setInfoPlanets(planets);
+      setOriginalData(planets);
     } catch (error) {
       console.error('Erro ao buscar os planetas:', error);
     }
@@ -51,14 +42,13 @@ function Table() {
       }
       return comparasionMath(comparasion, value, columnValue);
     });
-
     setInfoPlanets(filtered);
     const newFilter = {
       column,
       comparasion,
       valueNumber: value,
     };
-
+    setLastFilter(infoPlanets);
     setColumnFilterState((prevColumns) => {
       const updatedColumns = prevColumns
         .filter((columnAtt) => columnAtt !== newFilter.column);
@@ -67,23 +57,22 @@ function Table() {
       theme.handleFilterColumn(columnString);
       return updatedColumns;
     });
-
     setFilter((prevFilter) => ({
       ...prevFilter,
       filters: [...prevFilter.filters, newFilter],
     }));
   };
-
   const handleRemoveFilter = (filterToRemove: Filter) => {
     setFilter((prevFilter) => ({
       ...prevFilter,
       filters: prevFilter.filters.filter((filter) => filter !== filterToRemove),
     }));
-
     setColumnFilterState((prevColumn) => [...prevColumn, filterToRemove.column]);
-    fetch();
+    setInfoPlanets(lastFilter);
+    if (columnFilterState.length === 4) {
+      setInfoPlanets(originalData);
+    }
   };
-
   const handleSortPlanets = () => {
     const columnPlanet = theme.filters.order.column as keyof ResultApi;
     const { sort } = theme.filters.order;
@@ -91,12 +80,10 @@ function Table() {
     planets.sort((a: ResultApi, b: ResultApi): any => {
       const planetA = parseFloat(a[columnPlanet] as string);
       const planetB = parseFloat(b[columnPlanet] as string);
-
       const valuesPopulations = planets
         .map((info) => info.population.toString())
         .filter((fil) => fil !== 'unknown').map(Number);
       const maxValue = Math.max(...valuesPopulations, 0);
-
       if (sort === 'ASC') {
         const valueA = Number.isNaN(planetA) ? maxValue + 1 : planetA;
         const valueB = Number.isNaN(planetB) ? maxValue + 1 : planetB;
@@ -108,7 +95,12 @@ function Table() {
     });
     setInfoPlanets(planets);
   };
-
+  const handleRemoveAllFilters = () => {
+    if (theme.filters.filterNumerics !== initialNumerics) {
+      setFilter(initialFilter);
+      setInfoPlanets(originalData);
+    }
+  };
   return (
     <>
       <FilterPlanets filters={ filters } handle={ handleRemoveFilter } />
@@ -121,18 +113,18 @@ function Table() {
           <input
             type="text"
             data-testid="name-filter"
-            value={ textPlanet.value }
-            onChange={ ({ target }) => handleChange(target.value) }
+            value={ filHook.textPlanet.value }
+            onChange={ ({ target }) => filHook.handleChange(target.value) }
           />
         </label>
 
         <label>
           <select
             data-testid="column-filter"
-            value={ selectColumn.value }
+            value={ filHook.selectColumn.value }
             name="selectColumn"
             onChange={ ({ target }) => {
-              handleColumn(target.value);
+              filHook.handleColumn(target.value);
             } }
           >
             {columnFilterState.map((info) => (
@@ -149,8 +141,8 @@ function Table() {
         <label>
           <select
             data-testid="comparison-filter"
-            value={ selectComparasion.value }
-            onChange={ ({ target }) => handleComparasion(target.value) }
+            value={ filHook.selectComparasion.value }
+            onChange={ ({ target }) => filHook.handleComparasion(target.value) }
           >
             <option>maior que</option>
             <option>igual a</option>
@@ -162,8 +154,8 @@ function Table() {
           <input
             data-testid="value-filter"
             type="number"
-            value={ inputNumber.value }
-            onChange={ ({ target }) => handleValue(parseInt(target.value, 10)) }
+            value={ filHook.inputNumber.value }
+            onChange={ ({ target }) => filHook.handleValue(parseInt(target.value, 10)) }
           />
         </label>
 
@@ -179,7 +171,7 @@ function Table() {
             name=""
             id=""
             data-testid="column-sort"
-            onChange={ ({ target }) => handleColumnSortName(target.value) }
+            onChange={ ({ target }) => filHook.handleColumnSortName(target.value) }
           >
             <option>population</option>
             <option>orbital_period</option>
@@ -196,7 +188,7 @@ function Table() {
             id=""
             data-testid="column-sort-input-asc"
             value="ASC"
-            onChange={ ({ target }) => handleSort(target.value) }
+            onChange={ ({ target }) => filHook.handleSort(target.value) }
           />
           {' '}
           ascendente
@@ -207,7 +199,7 @@ function Table() {
             id=""
             data-testid="column-sort-input-desc"
             value="DESC"
-            onChange={ ({ target }) => handleSort(target.value) }
+            onChange={ ({ target }) => filHook.handleSort(target.value) }
           />
           {' '}
           descendente
@@ -217,6 +209,13 @@ function Table() {
           onClick={ handleSortPlanets }
         >
           ORDENAR
+        </button>
+
+        <button
+          data-testid="button-remove-filters"
+          onClick={ handleRemoveAllFilters }
+        >
+          REMOVER FILTROS
         </button>
       </form>
       <table>

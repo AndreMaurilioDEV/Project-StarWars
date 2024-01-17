@@ -32,5 +32,10 @@ export type Filter = {
   valueNumber: number;
 };
 
+export const initialNumerics = {
+  column: '',
+  comparasion: '',
+  value: 0,
+};
 export const columnFilter = ['population', 'orbital_period',
   'diameter', 'rotation_period', 'surface_water'];

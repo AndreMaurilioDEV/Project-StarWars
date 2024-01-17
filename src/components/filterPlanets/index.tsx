@@ -14,20 +14,22 @@ type FilterType = {
 function FilterPlanets({ filters, handle } : FilterType) {
   return (
     <div>
-      {filters && (
+      {filters && filters.filters.length > 0 && (
         <div>
           {filters.filters.map((info, index) => (
             <div key={ index }>
-              <span>{info.column}</span>
-              <span>{info.comparasion}</span>
-              <span>{info.valueNumber}</span>
-              <div data-testid="filter">
-                <button
-                  onClick={ () => handle(info) }
-                >
-                  Apagar
-                </button>
-              </div>
+              {info.column && (
+                <>
+                  <span>{info.column}</span>
+                  <span>{info.comparasion}</span>
+                  <span>{info.valueNumber}</span>
+                  <div data-testid="filter">
+                    <button onClick={ () => handle(info) }>
+                      X
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </div>
