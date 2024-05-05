@@ -2,7 +2,7 @@ type ApiToRemove = {
   residents: []
 };
 
-const apiPlanets = async () => {
+export const apiPlanets = async () => {
   try {
     const url = 'https://swapi.dev/api/planets';
     const response = await fetch(url);
@@ -18,4 +18,34 @@ const apiPlanets = async () => {
   }
 };
 
-export default apiPlanets;
+
+export const apiUniquePlanet = async (url: string) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const apiPlanetFilms = async (url: string) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const apiPlanetsResidents = async (url: string) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    
+  }
+}

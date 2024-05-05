@@ -1,0 +1,61 @@
+.img-container {
+    width: 95vw;
+    height: 300px;
+    background-color: black;
+    border-radius: 8px;
+    border: 2px solid #c0c0c0;
+    display: flex;
+    justify-content: center;
+}
+
+.title-planet {
+    color: #fcc419;
+    font-size: 2.5rem;
+    padding: 15px 0;
+}
+
+.title {
+    color: #fcc419;
+    font-size: 1.1rem;
+    padding-bottom: 15px;
+}
+
+.title-Film {
+    color: white;
+    font-weight: 600;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.card-Film {
+    border: 1px solid #c0c0c0;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.navigate-home {
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.desc-Film {
+    font-size: 1rem;
+}
+
+.icons-Details {
+    margin-right: 5px;
+    color: white;
+}
+
+.ball-loading {
+    height: 90vh;
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-back {
+    margin-right: 10px;
+}

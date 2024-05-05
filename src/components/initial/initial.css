@@ -1,0 +1,33 @@
+.div-Flex-Btn {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    padding: 20px 0px;
+    width: 100%;
+}
+
+.btn-Initial {
+   padding: 8px 95px;
+   background-color: #fcc419;
+   outline: 0;
+   border: 0;
+   border-radius: 5px;
+}
+
+.div-logo {
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.flex-logo {
+    width: 20rem;
+}
+
+.flex-logo img {
+    width: 100%;
+    height: 100%;
+}
+

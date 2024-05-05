@@ -1,0 +1,236 @@
+.container-Search {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inp-Search {
+  padding: 5px 45px 5px 5px;
+  background-color: #373a40;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  color: white;
+  text-align: left;
+}
+
+.inp-Search::placeholder {
+  color: white;
+  margin: 50px;
+}
+
+.button-Filter-Btn {
+    padding: 5px 10px;
+    outline: 0;
+    border: 0;
+    background-color: #373a40;
+}
+
+.img-Planet {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+            rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+            rgba(0, 0, 0, 0.12) 0px 4px 6px, 
+            rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+            rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.cart-Planet {
+    padding: 10px 0;
+    border-radius: 8px;
+    margin: 25px 0;
+    background-color: #373a40;
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 50px 100px -20px, 
+            rgba(255, 255, 255, 0.3) 0px 30px 60px -30px;
+}
+
+.box-Planets {
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.info-Planet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-Planet td {
+    font-size: 1.2rem;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.icon-Filter {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.search-label {
+    position: relative;
+    width: 100%;
+  }
+  
+  .search-icon {
+    color: white;
+    height: 100%;
+  }
+
+  .inp-Search::placeholder {
+    color: #555;
+    padding-left: 28px;
+    font-size: 0.9rem;
+  }
+
+  .form-Search {
+    width: 100%;
+  }
+
+  .img-Planet img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+
+  .loading {
+    font-size: 1.2rem;
+    color: white;
+    padding: 10px 0px;
+  }
+
+  .modal-header {
+    background-color: #373a40;
+    color: white;
+  }
+
+  .modal-header .btn-close {
+    color: white !important;
+  }
+  .modal-body {
+    background-color: #373a40;
+    color: white;
+  }
+
+  .modal-footer {
+    background-color: #373a40 !important;
+  }
+
+  .form-container label {
+    padding: 5px;
+  }
+
+  .form-container span {
+    margin-right: 5px;
+    font-size: 1ram;
+  }
+
+  .form-container .inp-value {
+    width: 35px;
+  }
+
+  .form-container button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 2px 16px;
+    height: 32px;
+    min-width: 60px;
+    min-height: 32px;
+    border: none;
+    color: #fff;
+    background-color: #4f545c;
+    transition: background-color .17s ease,color .17s ease;
+
+  }
+
+  .flex-accordion {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-accordion input {
+    margin: 0px 5px;
+  }
+
+  .field-group {
+    width: 100%;
+    display: flex;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+  
+  .icon-group {
+    background-color: #373a40;
+    padding: 0 10px;
+  }
+
+  .accordion-item {
+    background-color: #373a40 !important;
+    color: white !important;
+    border: 1px solid #4f545c !important;
+  }
+
+  .accordion-button {
+    background-color: #373a40 !important;
+    color: white !important;
+  }
+
+  .accordion {
+    --bs-accordion-border-color: black;
+  }
+
+  .btn-close {
+    --bs-btn-close-bg: url('') !important;
+  }
+
+  .ball-loading-planets {
+    height: 75vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .content-box {
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+ 
+
+  @media screen and (min-width: 1024px) {
+    .box-Planets {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .container-Search {
+      display: flex;
+      justify-content: center;
+      width: 30%;
+    }
+    
+    .div-Search {
+     display: flex;
+     justify-content: center;
+    }
+}
+
+ @media screen and (min-width: 1440px) {
+  .box-Planets {
+    width: 80vw;
+  }
+}
+

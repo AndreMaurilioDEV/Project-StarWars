@@ -1,4 +1,6 @@
 import { Filter } from '../table/comparasionFun';
+import './filter.css';
+import { MdDelete } from "react-icons/md";
 
 type FilterType = {
   filters: {
@@ -17,18 +19,23 @@ function FilterPlanets({ filters, handle } : FilterType) {
       {filters && filters.filters.length > 0 && (
         <div>
           {filters.filters.map((info, index) => (
-            <div key={ index }>
+            <div key={ index } className='box-Filters'>
               {info.column && (
-                <>
+                <div className='flex-Filters'>
+                  <div className='filters'>
                   <span>{info.column}</span>
                   <span>{info.comparasion}</span>
                   <span>{info.valueNumber}</span>
-                  <div data-testid="filter">
+                  </div>
+                  <div 
+                  data-testid="filter"
+                  className='btn-Remove-Filter'
+                  >
                     <button onClick={ () => handle(info) }>
-                      X
+                    <MdDelete className='icon-Delete'/>
                     </button>
                   </div>
-                </>
+                </div>
               )}
             </div>
           ))}

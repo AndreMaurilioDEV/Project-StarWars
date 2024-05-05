@@ -1,0 +1,84 @@
+.logo {
+    color: #fcc419;
+    font-size: 1rem;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.nav-Flex {
+    display: flex;
+    width: 100%;
+    padding-top: 15px;
+    justify-content: center;
+}
+
+.btn-Home {
+    outline: 0;
+    border: 0;
+    background-color: black;
+}
+
+.icon-Home {
+    font-size: 1.4rem;
+    color: white;
+}
+
+.nav-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3.8rem;
+    padding: 0.1rem;
+    display: flex;
+    align-content: center;
+    border-radius: 1.25rem;
+    transition: .4s;
+    background-color: #373a40;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.nav_list {
+    display: flex;
+}
+
+.nav_list {
+    flex-grow: 1;
+    text-align: center;
+    padding-left: 0;
+    justify-content: center;
+}
+
+.nav_item {
+    list-style-type: none;
+}
+
+.nav_item p {
+    color: white;
+}
+
+.nav_item span {
+    color: white;
+}
+
+.icon-button {
+    font-size: 1.5rem;
+}
+
+.nav_item:hover span{
+    color: #fcc419;
+}
+
+.nav-Flex img {
+    width: 8rem;
+}
+
+@media screen and (min-width: 1024px) {
+    .nav-menu {
+        display: none;
+    }
+}
